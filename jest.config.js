@@ -1,7 +1,7 @@
 module.exports = {
     // "preset": "jest-puppeteer"
   preset: "ts-jest",
-  testTimeout: 30000,
+  testTimeout: 300_000,
 //   testEnvironment: "node",
   globals: {
     "ts-jest": {
