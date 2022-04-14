@@ -49,6 +49,10 @@ export const TestConstants = {
      * login page dependents on infrastructure k8s or OpenShift
      */
     INFRASTRUCTURE: process.env.TS_INFRASTRUCTURE || 'k8s',
+    /**
+     * the factory url for creating devworkspace which is used in the tests
+     */
+    FACTORY_URL: process.env.FACTORY_URL || 'https://raw.githubusercontent.com/che-samples/bash/devfilev2/devfile.yaml',
 
     /**
      * The selected item on a OpenShift Identity Provider Table
