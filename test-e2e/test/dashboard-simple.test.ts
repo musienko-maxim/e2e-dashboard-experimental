@@ -28,8 +28,8 @@ describe('Simple Dashboard test', () => {
   it('login and verify dashboard loading', async () => {
     await loginPage.login();
     await dashboardPage.waitDashboardPage();
-    await pageContext.goto(`${TestConstants.BASE_URL}#${TestConstants.FACTORY_URL}`, {waitUntil: 'load', timeout: 300_000});
-    await theiaIDE.waitTheiaContainer();
+    // await pageContext.goto(`${TestConstants.BASE_URL}#${TestConstants.FACTORY_URL}`, {waitUntil: 'load', timeout: 300_000});
+    // await theiaIDE.waitTheiaContainer();
   })
 
 })

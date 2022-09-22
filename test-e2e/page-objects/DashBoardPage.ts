@@ -13,9 +13,13 @@ export class DashBoardMainPage {
   }
 
  public async waitDashboardPage(){
-    await this.page.waitForSelector(this.loginPage.dashboardSideBar);
+    await this.page.waitForSelector(this.loginPage.dashboardSideBar, {timeout: 100000});
     await this.page.waitForSelector(this.loginPage.dashboardHeaderBrand);
     await this.page.waitForSelector(this.loginPage.dashboardWorkspaceMainContainer);
  }
+
+public createWorkspace (){
+
+}
 
 }

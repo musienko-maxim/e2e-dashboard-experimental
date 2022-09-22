@@ -2,6 +2,7 @@ node_modules/
 .vscode/
 .theia/
 .idea/
+ dist/
 
 yarn-error.log
 

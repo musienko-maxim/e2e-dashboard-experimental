@@ -11,52 +11,62 @@
 
 export const TestConstants = {
     /**
-     * Base URL of the application which should be checked
+     * base URL of the application which should be checked
      */
-    BASE_URL:process.env.TS_BASE_URL || 'https://192.168.49.2.nip.io/dashboard/',
+    BASE_URL: process.env.BASE_URL || 'https://che-dogfooding.apps.che-dev.x6e0.p1.openshiftapps.com/dashboard/',
 
     /**
-     * Run browser in "Headless" (hiden) mode, "false" by default.
+     * run browser in "Headless" (hiden) mode, "false" by default.
      */
-    TS_SELENIUM_HEADLESS: process.env.TS_SELENIUM_HEADLESS === 'true',
+    HEADLESS: process.env.HEADLESS || 'true',
 
     /**
      * Browser width resolution, "1920" by default.
      */
-    RESOLUTION_WIDTH: Number(process.env.TS_SELENIUM_RESOLUTION_WIDTH) || 1920,
+    RESOLUTION_WIDTH: Number(process.env.RESOLUTION_WIDTH) || 1920,
 
     /**
-     * Browser height resolution, "1080" by default.
+     * browser height resolution, "1080" by default.
      */
-    RESOLUTION_HEIGHT: Number(process.env.TS_SELENIUM_RESOLUTION_HEIGHT) || 1080,
+    RESOLUTION_HEIGHT: Number(process.env.RESOLUTION_HEIGHT) || 1080,
 
     /**
-     * Username used to log in MultiUser Che.
+     * username used to log in MultiUser Che.
      */
-    USERNAME: process.env.TS_SELENIUM_USERNAME || 'che@eclipse.org',
-
-     /**
-     * Username used to log in MultiUser Che.
-     */
-    USER_PASSWORD: process.env.TS_SELENIUM_PASSWORD || 'admin',
+    USERNAME: process.env.USERNAME || 'che@eclipse.org',
 
     /**
-     * Path to folder with load tests execution report.
-     */
-    TEST_REPORT_FOLDER: process.env.TS_SELENIUM_LOAD_TEST_REPORT_FOLDER || './test-report-folder',
+    * username used to log in MultiUser Che.
+    */
+    USER_PASSWORD: process.env.PASSWORD || 'admin',
 
     /**
-     * login page dependents on infrastructure k8s or OpenShift
+     * path to folder with load tests execution report.
      */
-    INFRASTRUCTURE: process.env.TS_INFRASTRUCTURE || 'k8s',
+    TEST_REPORT_FOLDER: process.env.LOAD_TEST_REPORT_FOLDER || './test-report-folder',
+
+    /**
+     * login page dependents on platform k8s, OpenShift or SandBox
+     */
+    PLATFORM: process.env.PLATFORM || 'k8s',
+
     /**
      * the factory url for creating devworkspace which is used in the tests
      */
     FACTORY_URL: process.env.FACTORY_URL || 'https://raw.githubusercontent.com/che-samples/bash/devfilev2/devfile.yaml',
 
     /**
-     * The selected item on a OpenShift Identity Provider Table
+     * the selected item on a OpenShift Identity Provider Table
      */
-    IDP_ITEM: process.env.TS_IDP_ITEM
+    IDP_ITEM: process.env.IDP_ITEM,
 
+    /**
+     * user login which used for accesiing  to sandbox
+     */
+    GIT_HUB_LOGIN: process.env.GIT_HUB_LOGIN || 'user',
+
+    /**
+     * user password which used for accesiing  to sandbox
+     */
+     GIT_HUB_PASSWORD: process.env.GIT_HUB_PASSWORD || 'password'
 }
