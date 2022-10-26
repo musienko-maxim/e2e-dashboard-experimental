@@ -38,7 +38,7 @@ export const TestConstants = {
     /**
     * username used to log in MultiUser Che.
     */
-    USER_PASSWORD: process.env.PASSWORD || 'admin',
+    USER_PASSWORD: process.env.USER_PASSWORD || 'admin',
 
     /**
      * path to folder with load tests execution report.
@@ -58,7 +58,7 @@ export const TestConstants = {
     /**
      * the selected item on a OpenShift Identity Provider Table
      */
-    IDP_ITEM: process.env.IDP_ITEM,
+    IDP_ITEM: process.env.IDP_ITEM || 'kube:admin',
 
     /**
      * user login which used for accesiing  to sandbox

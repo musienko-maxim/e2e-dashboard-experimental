@@ -54,11 +54,12 @@ export class LoginPage {
   }
 
   private async openShiftLogin() {
-    await this.page.waitForSelector(this.openShiftLoginPage.loginPageMainForm);
-
+    await this.page.goto(TestConstants.BASE_URL);
+    await this.page.waitForSelector(this.openShiftLoginPage.loginButton);
+    await this.page.click(this.openShiftLoginPage.loginButton);
     if (TestConstants.IDP_ITEM !== "") {
-      const elements = await this.page.$x(`//a[text()='${TestConstants.IDP_ITEM}']`);
-      elements[0].click();
+      const element = await this.page.waitForXPath(`//a[text()='${TestConstants.IDP_ITEM}']`);
+      await element?.click();
     }
     await this.page.waitForSelector(this.openShiftLoginPage.loginPageLoginField)
     await this.page.type(this.openShiftLoginPage.loginPageLoginField, TestConstants.USERNAME);

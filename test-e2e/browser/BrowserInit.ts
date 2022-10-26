@@ -5,6 +5,8 @@ export class BrowserInit {
     return await puppeteer.launch({
       headless: false,
       ignoreHTTPSErrors: true,
+      defaultViewport:{'width' : 1920, 'height' : 1080},
+      args: ['--start-maximized']
     });
   }
 }

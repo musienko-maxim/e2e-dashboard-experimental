@@ -1,6 +1,6 @@
 import puppeteer, { Browser, Page } from "puppeteer";
 export class DashBoardMainPage {
-    private readonly page:Page;
+  private readonly page: Page;
 
   public readonly loginPage = {
     dashboardSideBar: "div#page-sidebar",
@@ -12,14 +12,15 @@ export class DashBoardMainPage {
     this.page = pageContext;
   }
 
- public async waitDashboardPage(){
-    await this.page.waitForSelector(this.loginPage.dashboardSideBar, {timeout: 100000});
+  public async waitDashboardPage() {
+    await this.page.waitForSelector(this.loginPage.dashboardSideBar, { timeout: 60000});
     await this.page.waitForSelector(this.loginPage.dashboardHeaderBrand);
     await this.page.waitForSelector(this.loginPage.dashboardWorkspaceMainContainer);
- }
+  }
 
-public createWorkspace (){
-
-}
+  public async clickOnDevNameCard(cardName: string) {
+    const cardItem = await this.page.waitForXPath(`//div[@class='pf-c-card__header' and text()='${cardName}']`);
+    await cardItem?.click();
+  }
 
 }
