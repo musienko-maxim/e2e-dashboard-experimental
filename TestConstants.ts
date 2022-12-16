@@ -58,7 +58,7 @@ export const TestConstants = {
     /**
      * the selected item on a OpenShift Identity Provider Table
      */
-    IDP_ITEM: process.env.IDP_ITEM || 'kube:admin',
+    IDP_ITEM: process.env.IDP_ITEM || '',
 
     /**
      * user login which used for accesiing  to sandbox

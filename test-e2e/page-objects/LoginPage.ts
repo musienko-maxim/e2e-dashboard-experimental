@@ -38,13 +38,13 @@ export class LoginPage {
   public async login() {
     switch (TestConstants.PLATFORM) {
       case Platform.Openshift:
-        this.openShiftLogin();
+        await this.openShiftLogin();
         break;
       case Platform.k8s:
-        this.k8sLogin();
+        await this.k8sLogin();
         break;
       case Platform.SanBox:
-        this.sandBoxLogin();
+        await this.sandBoxLogin();
         break;
       default: {
         throw new Error(`Platform is not defined. Please set up ${Platform.Openshift}, ${Platform.k8s} or ${Platform.SanBox}`);
@@ -57,14 +57,25 @@ export class LoginPage {
     await this.page.goto(TestConstants.BASE_URL);
     await this.page.waitForSelector(this.openShiftLoginPage.loginButton);
     await this.page.click(this.openShiftLoginPage.loginButton);
+
+
     if (TestConstants.IDP_ITEM !== "") {
       const element = await this.page.waitForXPath(`//a[text()='${TestConstants.IDP_ITEM}']`);
       await element?.click();
     }
+
     await this.page.waitForSelector(this.openShiftLoginPage.loginPageLoginField)
     await this.page.type(this.openShiftLoginPage.loginPageLoginField, TestConstants.USERNAME);
     await this.page.type(this.openShiftLoginPage.loginPagePasswordField, TestConstants.USER_PASSWORD);
     await this.page.click(this.openShiftLoginPage.loginButton);
+
+
+    await this.page.waitForNavigation({timeout: 90000, waitUntil: 'networkidle0'});
+
+    if (await this.page.$("input[name=approve]") !== null) {
+      await this.page.click("input[name=approve]");
+      console.log('The first Openshift login has been done');
+    }
   }
 
   private async k8sLogin() {

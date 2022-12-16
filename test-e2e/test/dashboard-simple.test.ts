@@ -2,7 +2,6 @@ import puppeteer, { Browser, Page } from 'puppeteer';
 import { BrowserInit } from '../browser/BrowserInit'
 import { LoginPage } from '../page-objects/LoginPage'
 import { DashBoardMainPage } from '../page-objects/DashBoardPage'
-import { TestConstants } from "../../TestConstants";
 import { TheiaIDE } from "../page-objects/TheiaIDE";
 
 describe('Simple Dashboard test', () => {
@@ -31,18 +30,18 @@ describe('Simple Dashboard test', () => {
     //register number of opened tabs on the start test
     const numPagesOnStartPhase = await browser.pages();
     // use Bash project as more simplier
-    const devWsStackName: string = 'Bash'
+    const devWsStackName: string = 'Empty Workspace'
     await loginPage.login();
     await dashboardPage.waitDashboardPage();
     await dashboardPage.clickOnDevNameCard(devWsStackName);
     const  ideTarget = await browser.waitForTarget(target => target.opener() === pageTarget);
     const numPagesAfterDevSpaceCreation = await browser.pages();
 
-    //after creation DewSpace from the DashBoard we are expecting of openning one more tab
+    //after creating DewSpace from the DashBoard we are expecting of openning one more tab
     expect(numPagesAfterDevSpaceCreation.length - numPagesOnStartPhase.length).toBe(1)
 
     const idePageAfterFirsrCreation = await ideTarget.page();
-    await idePageAfterFirsrCreation?.waitForSelector("div#theia-app-shell", {timeout:120_000})
+    await idePageAfterFirsrCreation?.waitForSelector("div[role='application']", {timeout:160_000})
     await idePageAfterFirsrCreation?.close();
 
     await dashboardPage.waitDashboardPage();
@@ -51,9 +50,9 @@ describe('Simple Dashboard test', () => {
     const ideTargetAfterSecondCreation = await browser.waitForTarget(target2 => target2.opener() === pageTarget);
     const idePageAfterSecondCreation = await ideTargetAfterSecondCreation.page();
     await idePageAfterSecondCreation?.screenshot({ path: "./screenshot3.png",  fullPage: true});
-    const createAnewWorkspaceButton = await idePageAfterSecondCreation?.waitForXPath("//button[text()='Open the existing workspace']");
+    const createAnewWorkspaceButton = await idePageAfterSecondCreation?.waitForXPath("//button[contains(text(),'Switch to running workspace')]", {timeout:60_000});
     await createAnewWorkspaceButton?.click();
-    await idePageAfterSecondCreation?.waitForSelector("div#theia-app-shell", {timeout:30_000})
+    await idePageAfterSecondCreation?.waitForSelector("div[role='application']", {timeout:90_000})
   })
 
 })
